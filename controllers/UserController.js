@@ -1,20 +1,22 @@
 import UserModel from '../models/UserModel.js';
 const UserController = {
     createUser: async (req, res) => {
-        try{ 
+        try {
             const result = await UserModel.create(req.body);
             res.status(201).json(result);
 
         }
-       catch (error) {
+        catch (error) {
             console.error(error);
             res.status(500).send({ message: 'Error creating user' });
         }
     },
-    
-    getUserById:  async (req, res) => {
-    try{ const result = await UserModel.findById(req.params.id);
-        res.status(200).json(result);}
+
+    getUserById: async (req, res) => {
+        try {
+            const result = await UserModel.findById(req.params.id);
+            res.status(200).json(result);
+        }
 
         catch (error) {
             console.error(error);
@@ -23,26 +25,29 @@ const UserController = {
 
 
     },
-    
+
     deleteUser: async (req, res) => {
-        try{ const result = await UserModel.findByIdAndDelete(req.params.id);
-            res.status(200).json(result);}
+        try {
+            const result = await UserModel.findByIdAndDelete(req.params.id);
+            res.status(200).json(result);
+        }
 
-            catch (error) {
-                console.error(error);
-                res.status(500).send({ message: 'Error deleting user' });
-            }
+        catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'Error deleting user' });
+        }
     },
-    
-    updateUser: async  (req, res) => {
-        try{
-            const result = await UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true }); 
-            res.status(200).json(result)}
+
+    updateUser: async (req, res) => {
+        try {
+            const result = await UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            res.status(200).json(result)
+        }
 
 
-            catch (error) {
-                console.error(error);
-                res.status(500).send({ message: 'Error updating user' });
+        catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'Error updating user' });
         }
     }
 }
